@@ -1,7 +1,6 @@
 ########### pipeline for generating and evaluating a leaderboard submission ##########
 leaderboard:
-	# First generate the leaderboard datasets LB1 (full training), LB2 (selection of subjects for prediction) and
-	LB4 (dummy test set)
+	# First generate the leaderboard datasets LB1 (full training), LB2 (selection of subjects for prediction) and LB4 (dummy test set)
 	python3 makeLeaderboardDataset.py --inputFolder ../data --outputFolder ../data
 
 	# Then generate a simple forecast from the training data, and save it as TADPOLE_Submission_Pycon_TeamName1.csv ...
