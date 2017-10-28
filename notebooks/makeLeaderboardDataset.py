@@ -134,31 +134,17 @@ def generateLBdatasets(inputFolder, outputFolder):
   print('columns', list(lb12Df.columns.values)[:10])
   # print(adsad)
 
-  # lb12Df['RID'] = tadpoleDf['RID']
-  # lb12Df['PTID'] = tadpoleDf['PTID']
-  # lb12Df['VISCODE'] = tadpoleDf['VISCODE']
-  # lb12Df['LB1'] = LB1
-  # lb12Df['LB2'] = LB2
-  # lb12Df['DXCHANGE'] = tadpoleDf['DXCHANGE']
-  # lb12Df['DX'] = tadpoleDf['DX']
-  # lb12Df['COLPROT'] = tadpoleDf['COLPROT']
-  # lb12Df['ORIGPROT'] = tadpoleDf['ORIGPROT']
-  # lb12Df['EXAMDATE'] = tadpoleDf['EXAMDATE']
-  #
-  # lb12Df.to_csv('TADPOLE_LB1_LB2.csv',index=False)
-  # print('TADPOLE_LB1_LB2.csv created in local folder')
-
-  # build data frame for LB4
+  # build data frame for a dummy LB4
   lb4Df = pd.DataFrame(np.nan,index=range(LB4.shape[0]), columns=('RID', 'LB4', 'CognitiveAssessmentDate', 'Diagnosis', 'ADAS13', 'ScanDate', 'Ventricles'
   ))
 
   lb4Df['RID'] = tadpoleDf['RID']
   lb4Df['LB4'] = LB4
   lb4Df['CognitiveAssessmentDate'] = tadpoleDf['EXAMDATE']
-  lb4Df['Diagnosis'] = tadpoleDf['DXCHANGE']
-  lb4Df['ADAS13'] = tadpoleDf['ADAS13']
+  lb4Df['Diagnosis'] = np.random.randint(1,8, size=(LB4.shape[0],))
+  lb4Df['ADAS13'] = 13
   lb4Df['ScanDate'] = tadpoleDf['EXAMDATE'] # for now set the scan date to be EXAMDATE
-  lb4Df['Ventricles'] = tadpoleDf['Ventricles'] / tadpoleDf['ICV'] # uses FS X-sectional volumes from ADNIMERGE
+  lb4Df['Ventricles'] = 0.05 # uses FS X-sectional volumes from ADNIMERGE
 
 
 
@@ -169,42 +155,10 @@ def generateLBdatasets(inputFolder, outputFolder):
   lb4Df = lb4Df[lb4Df['LB4'] == 1]
   lb4Df.reset_index(drop=True, inplace=True)
 
-  lb4Df.to_csv('%s/TADPOLE_LB4.csv' % outputFolder,index=False)
-  print('TADPOLE_LB4.csv created in %s' %  outputFolder)
+  lb4Df.to_csv('%s/TADPOLE_LB4_dummy.csv' % outputFolder,index=False)
+  print('TADPOLE_LB4_dummy.csv created in %s' %  outputFolder)
 
 
-
-  ###### Make the Leaderboard submission skeleton (or template) ##################
-  ###### This file is not used by other scripts (and thus not necessary), ########
-  ######  it is for participants' reference only #################################
-
-  nrOfForecastsPerSubj = 7*12 # 7 years * 12 months
-  unqRIDs = np.unique(lb12Df['RID'][lb12Df['LB2'] == 1])
-  nrUnqRIDs = unqRIDs.shape[0]
-  lbSubmissionDf = pd.DataFrame('', index=range(nrUnqRIDs*nrOfForecastsPerSubj), columns=('RID', 'Forecast Month', 'Forecast Date',
-  'CN relative probability', 'MCI relative probability', 'AD relative probability',	'ADAS13',	'ADAS13 50% CI lower',
-  'ADAS13 50% CI upper', 'Ventricles_ICV', 'Ventricles_ICV 50% CI lower',	'Ventricles_ICV 50% CI upper'))
-
-  # lastDateLB4Str = np.max(lb4Df['CognitiveAssessmentDate'][lb4Df['LB4'] == 1])
-  # print('lastDateLB4Str', lastDateLB4Str) # last date for LB2 is 2011-04-20, most finish at 2010-04-xx
-  # first date for LB4 is 2010-05-14
-  # set the forecasts to start from 2010-05.
-  # There will be very few subjects in LB2 who have visits after this date, but that is ok,
-  # since the evaluation script will only use the predictions closest to the LB4 visits.
-
-  forecastStartDate = datetime.strptime('2010-05-01', '%Y-%m-%d')
-
-  for s in range(nrUnqRIDs):
-    for f in range(nrOfForecastsPerSubj):
-      indexInDf = s*nrOfForecastsPerSubj + f
-
-      # set forecast date start to be one month after EXAMDATE. The predictions have to go for 7 years
-      forecastDateCurr = forecastStartDate + dateutil.relativedelta.relativedelta(months=f)
-      lbSubmissionDf.iloc[indexInDf] = [unqRIDs[s], f+1, forecastDateCurr.strftime('%Y-%m'), '', '', '', '', '', '', '', '','']
-
-
-  lbSubmissionDf.to_csv('%s/TADPOLE_Submission_Leaderboard_TeamName.csv' % outputFolder,index=False)
-  print('Submission skeleton TADPOLE_Submission_Leaderboard_TeamName.csv created in %s' % outputFolder)
 
 if __name__ == '__main__':
 
