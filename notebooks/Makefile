@@ -9,8 +9,7 @@ leaderboard:
 	python3 TADPOLE_SimpleForecast1.py
 
 	# Evaluate the user forecasts from TADPOLE_Submission_Leaderboard_TeamName1.csv against TADPOLE_LB4.csv using the evaluation function
-	python3 evalOneSubmission.py --leaderboard --d4File ../data/TADPOLE_LB4_dummy.csv --forecastFile 	.
-	./data/TADPOLE_Submission_Pycon_TeamName1.csv
+	python3 evalOneSubmission.py --leaderboard --d4File ../data/TADPOLE_LB4_dummy.csv --forecastFile 	../data/TADPOLE_Submission_Pycon_TeamName1.csv
 
 	# Submit (renamed version of) TADPOLE_Submission_Leaderboard_TeamName1.csv
 	# to TADPOLE website via the Submit page: https://tadpole.grand-challenge.org/submit/
