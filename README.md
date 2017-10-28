@@ -97,7 +97,7 @@ Many other open data sets are available that might serve as useful additional tr
 
 ## TADPOLE Submission Types & Prize Categories
 
-> N.B. These conditions and prizes are only relevant for TADPOLE entries, not for the PyCon UK Hackathon.
+> N.B. These conditions and prizes are only relevant for TADPOLE entries, not for the PyCon UK Hackathon. **PLEASE SEE THE [TADPOLE PYCON PAGE](https://tadpole.grand-challenge.org/pyconuk/) FOR DETAILS ON EVALUATION METRICS FOR THE PYCON HACKATHON. YOU WILL NEED TO [REGISTER WITH TADPOLE](https://tadpole.grand-challenge.org/accounts/signin/?next=/) IN ORDER TO SUBMIT YOUR ENTRY FOR THE PYCON HACKATHON.**
 
 There are two ways to enter the TADPOLE Grand Challenge: a [simple entry](https://tadpole.grand-challenge.org/site/tadpole/serve/public_html/TADPOLE_Simple_Submission_TeamName.xlsx) or a [full entry](https://tadpole.grand-challenge.org/site/tadpole/serve/public_html/TADPOLE_Simple_Submission_TeamName.xlsx).
 
