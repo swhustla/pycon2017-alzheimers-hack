@@ -9,14 +9,14 @@ There are two data sets that have been compiled from raw ADNI data for the PyCon
 > 
 > Individuals flagged under the `LB2` column are rollover individuals who will be participating in ADNI3. This is the population for whom TADPOLE predictions should be made. For the PyCon UK hackathon, predicted outcomes will be evaluated against a held-out test set (i.e. recent visits from LB2 rollover patients). For the wider TADPOLE Challenge, predicted outcomes will be evaluated against ADNI3 rollovers once this data is collected in 2018.
 
-For more information including a full data dictionary, please see [data_dictionary.md](data_dictionary.md) or you can download the data dictionary in CSV format [here](tadpole_d1_dictionary.csv).
+For more information including a full data dictionary, please see [data_dictionary.md](data_dictionary.md) or you can download the data dictionary in CSV format [here](tadpole_data_dictionary.csv).
 
 
 
 ## LB4: Longitudinal held-out test set
 > Longitudinal measurements for visits for LB2 patients **from May 2010 onwards**.
 
-The columns for the LB4 test set are identical to those used for LB1_LB2, i.e. please see [data_dictionary.md](data_dictionary.md) for detailed information on columns or you can download the data dictionary in CSV format [here](tadpole_d1_dictionary.csv).
+The columns for the LB4 test set are identical to those used for LB1_LB2, i.e. please see [data_dictionary.md](data_dictionary.md) for detailed information on columns or you can download the data dictionary in CSV format [here](tadpole_data_dictionary.csv).
 
 
 ## Dataset summary
