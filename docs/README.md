@@ -1,19 +1,35 @@
-# Alzheimer's Disease Challenge Hackathon: Dataset D1
+# Alzheimer's Disease Challenge Hackathon: Datasets
 
-For more information on other datasets, please see [datasets.md](datasets.md). For a full data dictionary please see [dataset_d1_full_datadict.md](dataset_d1_full_datadict.md) or you can download the data dictionary in CSV format [here](tadpole_d1_dictionary.csv).
-
-## D1: Longitudinal training set
-> Longitudinal measurements (i.e. over multiple visits) with associated outcomes (i.e. labelled training set) compiled from the entire ADNI history. Contains all individuals that have provided data in at least two visits (different dates) across ADNI1, ADNI GO and ADNI2. Data from sources such as MR & PET imaging, cognitive tests, CSF biomarkers and clinical assessment have been processed using standard ADNI data pipelines.
-
-[See here for a friendly intro](https://www.quora.com/How-does-Diffusion-Tensor-Imaging-DTI-work-and-how-is-it-used-in-neuroscience) to neuro-imaging methods (MRI and DTI) written by DARPA's former chief scientist.
+There are two data sets that have been compiled from raw ADNI data for the PyCon UK 2017 Alzheimer's Challenge Hackathon.
 
 
-## TADPOLE specific features
-- `D1`, `D2` denotes whether participant belongs to dataset D1 or D2
+
+## LB1_LB2: Longitudinal training set
+> Longitudinal measurements (i.e. over multiple visits) with associated outcomes (i.e. labelled training set) compiled from the entire ADNI history. Contains all individuals that have provided data in at least two visits (different dates) across ADNI1, ADNI GO and ADNI2 **up until May 2010**. Data from sources such as MR & PET imaging, cognitive tests, CSF biomarkers and clinical assessment have been processed using standard ADNI data pipelines.
+> 
+> Individuals flagged under the `LB2` column are rollover individuals who will be participating in ADNI3. This is the population for whom TADPOLE predictions should be made. For the PyCon UK hackathon, predicted outcomes will be evaluated against a held-out test set (i.e. recent visits from LB2 rollover patients). For the wider TADPOLE Challenge, predicted outcomes will be evaluated against ADNI3 rollovers once this data is collected in 2018.
+
+For more information including a full data dictionary, please see [data_dictionary.md](data_dictionary.md) or you can download the data dictionary in CSV format [here](tadpole_d1_dictionary.csv).
+
+
+
+## LB4: Longitudinal held-out test set
+> Longitudinal measurements for visits for LB2 patients **from May 2010 onwards**.
+
+The columns for the LB4 test set are identical to those used for LB1_LB2, i.e. please see [data_dictionary.md](data_dictionary.md) for detailed information on columns or you can download the data dictionary in CSV format [here](tadpole_d1_dictionary.csv).
+
+
+## Dataset summary
+[See here for a friendly intro](https://www.quora.com/How-does-Diffusion-Tensor-Imaging-DTI-work-and-how-is-it-used-in-neuroscience) to neuro-imaging methods (MRI and DTI) written by DARPA's former chief scientist. The TADPOLE Challenge website also has an [excellent overview of the cognitive tests, MRI measures, PET measures, CSF measures and risk factors](https://tadpole.grand-challenge.org/data/) used.
+
+
+### TADPOLE specific features
+- `D1`, `D2` and `LB1` columns can be ignored.
+- `LB2` denotes whether this participant exists in the `LB4` hackathon test set.
 - `DXCHANGE` codes clinical status 1=Stable:NL to NL, 2=Stable:MCI to MCI, 3=Stable:AD to AD, 4=Conv:NL to MCI, 5=Conv:MCI to AD, 6=Conv:NL to AD, 7=Rev:MCI to NL, 8=Rev:AD to MCI, 9=Rev:AD to NL, -1=Not available |
 
 
-## ADNIMERGE
+### ADNIMERGE
 > Key ADNI tables merged into one table.
 
 - Identifiers (`RID`, `PTID`)
@@ -26,7 +42,7 @@ For more information on other datasets, please see [datasets.md](datasets.md). F
 - Many of the above have equivalent baseline metrics, e.g. `CDRSB_bl`, `ADAS11_bl`, `ADAS13_bl`, `Ventricles_bl` and more; also time measured since baseline in years (`Years_bl`) and months (`Month_bl`) and months rounded (`Month`, `M`).
 
 
-## UCSFFSL
+### UCSFFSL
 > MRI biomarkers (FreeSurfer longitudinally processed ROIs from UCSFFSL tables).
 
 - Identifiers (`RID_UCSFFSL_02_01_16_UCSFFSL51ALL_08_01_16`)
@@ -37,13 +53,13 @@ For more information on other datasets, please see [datasets.md](datasets.md). F
 - MRI detail: formatted as `ST{X}{Y}_{Z}` where `{X}` is number between 1-130 corresponding to region (e.g. `RightParahippocampal`); `{Y}` is e.g. `SV`/`CV` for volume, `SA` for surface area, `TA`/`TS` for average/sd of cortical thickness, etc; and `{Z}` is always `_UCSFFSL_02_01_16_UCSFFSL51ALL_08_01_16`. For example, `ST100SV_UCSFFSL_02_01_16_UCSFFSL51ALL_08_01_16`.
 
 
-## UCSFFSX
+### UCSFFSX
 > Cross-sectional MRI biomarkers (processed with FreeSurfer).
 
 This dataset is very similar in features to the UCSFFSL data.
 
 
-## BAIPETNMRC
+### BAIPETNMRC
 > PET ROI-based biomarkers (FDG) from the Banner Alzheimer's Institute PET NMRC Summaries.
 
 - Identifiers (`RID_BAIPETNMRC_09_12_16`)
@@ -52,7 +68,7 @@ This dataset is very similar in features to the UCSFFSL data.
 - Additional PET data: formatted as `{X}_{Z}` where `{X}` may have a description (e.g. `ACI` is "amyloid convergence index for AV-45 subjects") or it may not (e.g. `FROITRN001`), and `{Z}` is always `_BAIPETNMRC_09_12_16`
 
 
-## UCBERKELEYAV45
+### UCBERKELEYAV45
 > PET ROI-based biomarkers (AV45) from the UC Berkeley AV45 analysis.
 
 - Identifiers (`RID_UCBERKELEYAV45_10_17_16`)
@@ -67,13 +83,13 @@ This dataset is very similar in features to the UCSFFSL data.
 - Notes on AV45 data: all features end in `_UCBERKELEYAV45_10_17_16`; and many of the features are represented as both the AV45 uptake in that subregion (e.g. `CC_ANTERIOR`) and the ROI size in mm^3 (e.g. `CC_ANTERIOR_SIZE`)
 
 
-## UCBERKELEYAV1451
+### UCBERKELEYAV1451
 > PET ROI-based biomarkers (AV1451) from the UC Berkeley AV1451 analysis.
 
 This dataset is very similar in features and structure to the UCBERKELEYAV45 data.
 
 
-## DTIROI
+### DTIROI
 > [Diffusion Tensor Imaging (DTI)](https://www.quora.com/How-does-Diffusion-Tensor-Imaging-DTI-work-and-how-is-it-used-in-neuroscience) looks at diffusion in the brain to understand where there are blood vessels in the brain, the width of vessels and their orientation. These DTI biomarkers represent ROI summary measures (e.g. mean diffusivity MD, axial diffusivity AD) taken from the ADNI spreadsheet `DTIROI_04_30_14.csv`.
 
 - Identifiers (`RID_DTIROI_04_30_14`)
@@ -85,7 +101,7 @@ This dataset is very similar in features and structure to the UCBERKELEYAV45 dat
 - Notes on DTIROI data: all features end in `_DTIROI_04_30_14`.
 
 
-## UPENNBIOMK9
+### UPENNBIOMK9
 > Three CSF biomarkers (Amyloid-beta, Tau and P-Tau) taken from the UPENN Elecsys analysis (originally derived from ADNI's `UPENNBIOMK9_04_19_17.csv` spreadsheet).
 
 - Identifiers (`RID_UPENNBIOMK9_04_19_17`)

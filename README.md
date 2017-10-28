@@ -75,16 +75,15 @@ The table below summarises the format of the forecasts using the above examples:
 
 The ADNI study has [three phases](http://adni.loni.usc.edu/study-design/): ADNI1, ADNI GO and ADNI2. New participants were recruited across North America during each phase of the study and agreed to complete a variety of imaging and clinical assessments. Participants are followed and reassessed over time to track the pathology of the disease as it progresses. [ADNI3 launched in September 2016](https://fnih.org/what-we-do/current-research-programs/adni3) and will run until 2022, aiming to recruit 1,200 volunteers as well as re-evaluate 800 previous ADNI participants in this time.
 
-There are three "standard" data sets that have been compiled from raw ADNI data for TADPOLE.
+There are three "standard" data sets that have been compiled from raw ADNI data for TADPOLE. From these three ADNI datasets (see the [ADNI website for more information on the standard D1, D2, D3 ADNI datasets](https://tadpole.grand-challenge.org/data/)), the following two datasets have been compiled for the PyCon UK 2017 Alzheimer's Hackathon:
 
-**D1: Longitudinal training set**
-Longitudinal measurements (i.e. over multiple visits) with associated outcomes (i.e. labelled training set) compiled from the entire ADNI history. Contains all individuals that have provided data in at least two visits (different dates) across ADNI1, ADNI GO and ADNI2. Data from sources such as MR & PET imaging, cognitive tests, CSF biomarkers and clinical assessment have been processed using standard ADNI data pipelines.
+**LB1_LB2: Longitudinal training set**
+Longitudinal measurements (i.e. over multiple visits) with associated outcomes (i.e. labelled training set) compiled from the entire ADNI history. Contains all individuals that have provided data in at least two visits (different dates) across ADNI1, ADNI GO and ADNI2 **up until May 2010**. Data from sources such as MR & PET imaging, cognitive tests, CSF biomarkers and clinical assessment have been processed using standard ADNI data pipelines.
 
-**D2: Longitudinal test set**
-Longitudunal measurements for rollover individuals who will be participating in ADNI3. This is the population for whom TADPOLE predictions should be made. Predicted outcomes will be evaluated against ADNI3 rollovers once this data is collected in 2018.
+Individuals flagged under the `LB2` column are rollover individuals who will be participating in ADNI3. This is the population for whom TADPOLE predictions should be made. For the PyCon UK hackathon, predicted outcomes will be evaluated against a held-out test set (i.e. recent visits from LB2 rollover patients). For the wider TADPOLE Challenge, predicted outcomes will be evaluated against ADNI3 rollovers once this data is collected in 2018.
 
-**D3: Cross-sectional test set**
-Strict subset of D2, containing a single (most recent) time point and a limit set of variables for the individuals in D2. Although we expect worse forecasts from this data set than those generated from D2, D3 represents the information typically available when selecting a cohort for a clinical trial and therefore has its own intrinsic scientific value.
+**LB4: Longitudinal held-out test set**
+Longitudinal measurements for visits for LB2 patients **from May 2010 onwards**.
 
 **Other data sets**
 Many other open data sets are available that might serve as useful additional training data should participants wish to look at it. For example:

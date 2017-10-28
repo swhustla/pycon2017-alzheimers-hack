@@ -1,10 +1,6 @@
-# Alzheimer's Disease Challenge Hackathon: Dataset D1 (Full Data Dictionary)
+# Alzheimer's Disease Challenge Hackathon: Full Data Dictionary
 
-For more information on other datasets, please see [datasets.md](datasets.md). For a high level summary of the D1 data set, please see [dataset_d1.md](dataset_d1.md).
-
-## D1: Longitudinal training set
-> Longitudinal measurements (i.e. over multiple visits) with associated outcomes (i.e. labelled training set) compiled from the entire ADNI history. Contains all individuals that have provided data in at least two visits (different dates) across ADNI1, ADNI GO and ADNI2. Data from sources such as MR & PET imaging, cognitive tests, CSF biomarkers and clinical assessment have been processed using standard ADNI data pipelines.
-
+For a high level summary of the datasets, please see [README.md](docs/README.md).
 
 ## Full data dictionary
 
@@ -13,8 +9,10 @@ For more information on other datasets, please see [datasets.md](datasets.md). F
 | RID | Participant roster ID (Additional notes: The 4 digit roster ID (RID) should be used to merge data) | ADNIMERGE |
 | PTID | Participant ID (Additional notes: 3 digit site number and 4 digit roster ID (RID) separated by '_S_') | ADNIMERGE |
 | VISCODE | Visit code | ADNIMERGE |
-| D1 | Denotes whether participant belongs to dataset D1 |   |
-| D2 | Denotes whether participant belongs to dataset D2 |   |
+| D1 | Denotes whether participant belongs to ADNI dataset D1 (can be ignored for the PyCon hackathon) |   |
+| D2 | Denotes whether participant belongs to ADNI dataset D2 (can be ignored for the PyCon hackathon) |   |
+| LB1 | Can be ignored for the PyCon hackathon |   |
+| LB2 | Denotes whether this participant exists in the `LB4` hackathon test set |   |
 | DXCHANGE | 1=Stable:NL to NL, 2=Stable:MCI to MCI, 3=Stable:AD to AD, 4=Conv:NL to MCI, 5=Conv:MCI to AD, 6=Conv:NL to AD, 7=Rev:MCI to NL, 8=Rev:AD to MCI, 9=Rev:AD to NL, -1=Not available |   |
 | SITE | Site | ADNIMERGE |
 | COLPROT | Protocol under which data was collected | ADNIMERGE |
