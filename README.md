@@ -7,6 +7,8 @@
 > The TADPOLE Challenge was set up by volunteers at UCL with the aim of better understanding Alzheimer's disease using open source data. The dataset behind this is the [Alzheimer's Disease Neuro-imaging Archive](http://adni.loni.usc.edu/). In the competition, data scientists from around the world are competing for a prize fund of £30K to come up with the best model to predict outcomes of the disease in patients at risk using personal, genetic and medical imaging data.
 > 
 > If this sounds interesting to you, then please come along and meet us on Sunday afternoon. We're hosting a hackathon version of the competition, complete with leaderboard where you'll be able to get your hands on a lot of medical data and put your ML skills to the test. If you're not a data scientist, yet still fancy contributing Python skills towards this great cause then there will be tasks tailored to each teams' skillset. Come and join us on Sunday, let's make Alzheimer's Disease history!
+> 
+> If you would like to participate in the PyCon UK hackathon but not participate in the prediction challenge (for example, your Python skills are far beyond any mere data scientist) please see [Hackathon Bonus Tasks](bonus.md). Any teams working on bonus tasks are also eligible for prizes.
 
 
 
