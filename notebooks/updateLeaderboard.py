@@ -156,7 +156,7 @@ tr.d1 td {
   nrFiles = len(forecastFiles)
   # print(evalResults.shape)
   # print(evalResults['MAUC'])
-  formatStrsMeasures = ['%.3f','%.3f','%.3f','%.2e','%.3f','%.2e','%.3f','%.3f']
+  formatStrsMeasures = ['%.3f','%.3f','%.3f','%.5f','%.3f','%.5f','%.3f','%.3f']
   for f in range(evalResults['MAUC'].shape[0]):
     if not np.isnan(evalResults['MAUC'].iloc[f]):
       text += '\n   <tr class="d%d">' % (f % 2)
