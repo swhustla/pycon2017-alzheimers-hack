@@ -12,6 +12,7 @@ import string
 import time
 import datetime
 import pickle
+from scipy.stats import rankdata
 
 parser = argparse.ArgumentParser(usage='python3 updateLeaderboard.py', description=r'''
   Script uploads the PyCon leaderboard table to dropbox
@@ -165,7 +166,7 @@ tr.d1 td {
       # print(f, type('%f' % evalResults['RANK'].iloc[f]))
       # print(f, [type(n) for n in evalResults.loc[f,'MAUC':'ventsCP']])
 
-      text += '<td>%d</td>'  % evalResults['RANK'].iloc[f]
+      text += '<td>%.1f</td>'  % evalResults['RANK'].iloc[f]
       text += '<td style="word-wrap: break-word">%s</td><td>' % evalResults['TEAMNAME'].iloc[f]
       text += '</td><td>'.join(
         [ strFmt % n for strFmt, n in zip(formatStrsMeasures, evalResults.loc[f,'MAUC':'ventsCPA'])] +
@@ -272,8 +273,17 @@ def downloadLeaderboardSubmissions():
     evalResults = dataStruct['evalResults']
 
   # compute the ranks using MAUC
-  rankOrder = np.argsort(evalResults.as_matrix(columns=['MAUC']).reshape(-1))[::-1]  # sort them by MAUC
-  rankOrder = np.argsort(rankOrder) + 1  # make them start from 1
+  rankMAUC = rankdata(rankdata(-evalResults.as_matrix(columns=['MAUC']).reshape(-1), method='average'), method='average')
+  rankADAS = rankdata(rankdata(evalResults.as_matrix(columns = ['adasMAE']).reshape(-1), method='average'), method='average')
+  rankVENTS = rankdata(rankdata(evalResults.as_matrix(columns = ['ventsMAE']).reshape(-1), method='average'), method='average')
+
+  print('rankMAUC', rankMAUC)
+  print('rankADAS', rankADAS)
+  print('rankVENTS', rankVENTS)
+
+  rankSum = rankMAUC + rankADAS + rankVENTS
+
+  rankOrder = rankdata(rankSum, method='average')   # make them start from 1
   for f in range(evalResults.shape[0]):
     evalResults.loc[f, 'RANK'] = rankOrder[f]
 
@@ -282,7 +292,7 @@ def downloadLeaderboardSubmissions():
   evalResults = evalResults.sort_values(by=['MAUC', 'BCA'],ascending=False)
   evalResults = evalResults.reset_index(drop=True)
 
-  # print('evalResults after\n', evalResults)
+  print('evalResults after\n', evalResults)
 
   htmlFileFullPathRemote = '%s/%s' % (dropboxRemoteFolder, htmlFile)
   htmlFileFullPathLocal = '%s/%s' % (ldbSubmissionsFld, htmlFile)
