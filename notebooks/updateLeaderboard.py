@@ -272,7 +272,6 @@ def downloadLeaderboardSubmissions():
     fileDatesRemote = dataStruct['fileDatesRemote']
     evalResults = dataStruct['evalResults']
 
-  # compute the ranks using MAUC
   rankMAUC = rankdata(rankdata(-evalResults.as_matrix(columns=['MAUC']).reshape(-1), method='average'), method='average')
   rankADAS = rankdata(rankdata(evalResults.as_matrix(columns = ['adasMAE']).reshape(-1), method='average'), method='average')
   rankVENTS = rankdata(rankdata(evalResults.as_matrix(columns = ['ventsMAE']).reshape(-1), method='average'), method='average')
